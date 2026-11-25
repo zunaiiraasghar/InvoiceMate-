@@ -1,0 +1,23 @@
+INVOICEMATE - FINAL VERCEL DEPLOYMENT
+
+1) Upload ALL contents of this folder to the ROOT of one GitHub repository.
+   Do not upload the outer ZIP folder itself. app.py and requirements.txt must be at repository root.
+2) In Vercel, import that GitHub repository. Framework should be detected as Flask/Python.
+   Do not set a build command or output directory. Root Directory should be ./
+3) In Vercel Project Settings > Environment Variables, add:
+   SECRET_KEY = a long random secret string that you create and keep private
+   OPENAI_API_KEY = your own OpenAI API secret key (required for real AI chatbot)
+   OPENAI_MODEL = gpt-4o-mini (optional; this is the app default)
+4) Save variables and redeploy the latest deployment.
+5) Test home page, register/login, customer/product/invoice pages, and chatbot.
+
+DATABASE NOTE:
+This project uses SQLite in /tmp on Vercel so it can start without a separate database.
+/tmp is temporary and may be cleared or differ between function instances. Do not use this
+for real customer records or as a production SaaS database. A persistent hosted database
+(PostgreSQL) is required if records must survive redeploys/restarts and work across instances.
+
+AI NOTE:
+The chatbot code is included. Real AI replies require OPENAI_API_KEY in Vercel.
+Never put the API key in GitHub, HTML, JavaScript, or this ZIP. Never send it in chat.
+ChatGPT subscription billing and API billing are separate.
