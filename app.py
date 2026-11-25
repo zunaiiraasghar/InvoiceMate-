@@ -11,7 +11,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # creates app.instance_path during initialization, so point it to writable /tmp.
 # Locally, keep Flask's normal instance folder.
 _vercel_instance = {"instance_path": "/tmp/invoicemate-instance"} if os.environ.get("VERCEL") else {}
-app = Flask(__name__, static_folder=None if os.environ.get("VERCEL") else "static", static_url_path="/static", **_vercel_instance)
+app = Flask(
+    __name__,
+    template_folder=".",
+    static_folder=None if os.environ.get("VERCEL") else "static",
+    static_url_path="/static",
+    **_vercel_instance
+)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-this-secret-key")
 # SQLite works immediately. To use MySQL, set DATABASE_URL in your environment.
 # For this demo deployment, SQLite is stored under the writable instance path.
