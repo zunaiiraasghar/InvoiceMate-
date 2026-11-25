@@ -14,7 +14,7 @@ _vercel_instance = {"instance_path": "/tmp/invoicemate-instance"} if os.environ.
 app = Flask(
     __name__,
     template_folder=".",
-    static_folder=None if os.environ.get("VERCEL") else "static",
+   static_folder="static",
     static_url_path="/static",
     **_vercel_instance
 )
